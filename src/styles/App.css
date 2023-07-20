@@ -1,19 +1,91 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::placeholder {
+  color: rgb(167, 167, 167);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.input-style {
+  border-radius: 5px;
+  width:  30vw;
+}
+
+.button-style {
+  border: 2.5px solid rgb(32, 32, 219);
+  border-radius: 10px;
+  background: linear-gradient(rgb(199, 216, 249), rgb(2, 85, 194));
+  color: white;
+  font-family: serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: .1vw .8vw;
+  transition: .2s;
+}
+
+.button-style:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.tip-button-style {
+  border: 2.5px solid rgb(32, 32, 219);
+}
+
+.background-gradation {
+  background: linear-gradient(to right, rgb(247, 234, 189), rgb(189, 211, 239));
+}
+
+.transition-animation {
+  animation: fade_in .7s;
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, 0.5);
+  transition: .5s;
+}
+
+.modal-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 2;
+  background-color: white;
+  border-radius: 2vw;
+}
+
+.modal-window-info-field {
+  padding: 2vw;
+}
+
+.modal-window-button-field {
+  padding: 1.5vw;
+  background-color:rgb(201, 201, 201);
+  border-radius: 0 0 2vw 2vw;
+}
+
+.close-button-style {
+  background-color: rgb(248, 58, 58);
+  color: white;
+  font-size: 1.2vw;
+  border-radius: 1vw;
+  padding: .5vw 1vw;
+  transition: .3s;
+}
+
+.close-button-style:hover {
+  cursor: pointer;
+  opacity: .5;
 }

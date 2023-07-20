@@ -1,0 +1,42 @@
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
+import { typeUserList } from "../../types/type";
+
+export const getAllUsersDocuments = async () => {
+  let usersArray = [];
+  const querySnapshot = await getDocs(collection(db, 'users'));
+  for(const usersDoc of querySnapshot.docs) {
+    usersArray.push(usersDoc.data());
+    console.log(usersArray);
+  }
+  return usersArray;
+}
+
+export const getUserStatus = async (Email: string, Password: string) => {
+  const usersCollectionRef = collection(db, 'users');
+  const querySnapshot = await getDocs(usersCollectionRef);
+  const userInfo = querySnapshot.docs.find(usersDoc => (usersDoc.data().Email === Email) && (usersDoc.data().Password === Password));
+  if(userInfo === undefined) {
+    return undefined;
+  } else {
+    return {
+      UserName: userInfo?.data().UserName,
+      Email: userInfo?.data().Email,
+      Password: userInfo?.data().Password,
+      Tip: userInfo?.data().Tip,
+    }  
+  }
+}
+
+export const checkRegistered = async (targetRef: any, mail: string, pass: string) => {
+  const queryEmail = query(targetRef, where('Email', '==', mail));
+  const queryPassword = query(targetRef, where('Password', '==', pass));
+  const registeredEmail = await getDocs(queryEmail);
+  const registeredPassword = await getDocs(queryPassword);
+  return {mail: !!registeredEmail.docs.length, pass: !!registeredPassword.docs.length}
+}
+
+export const sendTip = async (myInfo: any, targetInfo: any, inputMoney: string) => {
+  console.log(myInfo.UserName, targetInfo.UserName, inputMoney);
+
+}
