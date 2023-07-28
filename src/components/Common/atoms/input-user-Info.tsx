@@ -1,6 +1,6 @@
 import { InputProps } from "../../../types/type";
 
-const Input = ({type, register}: InputProps) => {
+const InputUserInfo = ({type, register}: InputProps) => {
 
   return(
     <div className="">
@@ -8,16 +8,12 @@ const Input = ({type, register}: InputProps) => {
         {...register(type, { 
           required: {
             value: true,
-            message: `${type}:未入力です`,
+            message: `${type}を入力してください`,
           },
           minLength: {
             value: 8,
-            message: `${type}: 8文字以上入力してください`,
+            message: `${type}は8文字以上入力してください`,
           },
-          // pattern: {
-          //   value: /^[A-Za-z0-9]+$/,
-          //   message: 'アルファベットと数字で入力してください。',
-          // },
         })} 
         className="is-size-5 input-style"
         name={type} 
@@ -28,4 +24,4 @@ const Input = ({type, register}: InputProps) => {
   )
 }
 
-export default Input;
+export default InputUserInfo;

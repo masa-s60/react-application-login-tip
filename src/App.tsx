@@ -1,6 +1,6 @@
 import LogIn from './components/Pages/login';
 import TipApplication from './components/Pages/tip-application';
-import { useAuthContext, AuthProvider } from './Context/auth-context';
+import { AuthProvider } from './Context/auth-context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/App.css';
 import 'bulma/css/bulma.css';

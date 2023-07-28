@@ -13,17 +13,24 @@ export type useStateTypeShow = {
   setShowModal: typeSetShow,
 }
 
-// export type useStateSetUser = Dispatch<SetStateAction<typeUser | undefined>>;
-// export type useStateTypeUser = {
-//   user: string,
-//   setUser: useStateSetUser,
-// }
+export type typeSetActive = Dispatch<SetStateAction<boolean>>;
+export type useStateTypeActive = {
+  active: boolean,
+  setActive: typeSetActive
+}
 
 export type useStateSetUserInfo = Dispatch<SetStateAction<typeUser | undefined>>;
 export type useStateTypeUserInfo = {
   userInfo: typeUser | undefined,
   setUserInfo: useStateSetUserInfo,
 }
+
+export type useStateSetUsers = Dispatch<SetStateAction<Partial<typeUser>[]>>;
+export type useStateTypeUsers = {
+  users: Partial<typeUser>[],
+  setUsers: useStateSetUsers,
+}
+
 
 export type typeChildren = {
   children: ReactNode;
@@ -49,13 +56,17 @@ export type FormValues = {
 }
 
 export type InputProps = {
-  type: Path<FormValues>;
-  register: UseFormRegister<FieldValues>;
+  type: Path<FormValues>,
+  register: UseFormRegister<FieldValues>,
 };
 
-export type typeUserList = Record<string, string | number>[];
+export type modalInputItem = {
+  register: UseFormRegister<FieldValues>,
+  setInputMoney: useStateSetString,
+  setErrorMessage: useStateSetString
+};
 
-export type useStateSetMoney = Dispatch<SetStateAction<string>>;
+export type useStateSetString = Dispatch<SetStateAction<string>>;
 
 
 

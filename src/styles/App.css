@@ -56,7 +56,38 @@
   transition: .5s;
 }
 
+.slide-in {
+  animation: slideIn forwards .7s;
+}
+
+.slide-out {
+  animation: slideOut forwards .7s;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    top: 45%;
+  }
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  100% {
+    opacity: 0;
+    top: 45%;
+  }
+}
+
 .modal-window {
+  text-align: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -67,7 +98,7 @@
 }
 
 .modal-window-info-field {
-  padding: 2vw;
+  padding: 2vw 2vw .5vw 2vw;
 }
 
 .modal-window-button-field {
@@ -80,6 +111,7 @@
   background-color: rgb(248, 58, 58);
   color: white;
   font-size: 1.2vw;
+  letter-spacing: 3px;
   border-radius: 1vw;
   padding: .5vw 1vw;
   transition: .3s;

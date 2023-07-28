@@ -1,7 +1,7 @@
 import UserList from "../Common/Molecules/user-list";
 import ModalWindow from "./modal-window";
 import { useState } from "react";
-import { typeUser, useStateTypeUserInfo } from "../../types/type";
+import { typeUser } from "../../types/type";
 
 const UserTable = () => {
   const [showModal, setShowModal] = useState<'WALLET' | 'SEND' | undefined>(undefined);
@@ -16,6 +16,18 @@ const UserTable = () => {
     setUserInfo
   }
 
+  const [users, setUsers] = useState<Partial<typeUser>[]>([]);
+  const usersItem = {
+    users,
+    setUsers
+  }
+
+  const [active, setActive] = useState<boolean>(false);
+  const modalClassToggleItem = {
+    active,
+    setActive
+  }
+
   return(
     <div className='level-item mb-6'>
       <table style={{width: '60%'}}>
@@ -25,10 +37,20 @@ const UserTable = () => {
           </tr>
         </thead>
         <tbody>
-          <UserList userInfoItem={userInfoItem} showModalItem={showModalItem}/>
+          <UserList 
+            userInfoItem={userInfoItem} 
+            showModalItem={showModalItem} 
+            usersItem={usersItem}
+            modalClassToggleItem={modalClassToggleItem}
+          />
         </tbody>
       </table>
-      {showModal && <ModalWindow userInfoItem={userInfoItem} showModalItem={showModalItem}/>}
+      {showModal && <ModalWindow 
+        userInfoItem={userInfoItem} 
+        showModalItem={showModalItem} 
+        usersItem={usersItem}
+        modalClassToggleItem={modalClassToggleItem}
+      />}
     </div>
   );
 }

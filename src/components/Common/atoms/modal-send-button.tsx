@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useStateTypeShow } from '../../../types/type';
 
-const ModalFieldButton:FC<{buttonValue: string, showModalItem: useStateTypeShow}> = (props) => {
+const ModalSendButton:FC<{buttonValue: string, showModalItem: useStateTypeShow}> = (props) => {
   return(
     <div className="modal-window-button-field">
       <button 
@@ -14,4 +14,4 @@ const ModalFieldButton:FC<{buttonValue: string, showModalItem: useStateTypeShow}
   )
 }
 
-export default ModalFieldButton;
+export default ModalSendButton;

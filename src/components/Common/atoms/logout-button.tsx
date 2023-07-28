@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../Context/auth-context";
+
 const LogOutButton = () => {
   const context = useAuthContext();
   const navigate = useNavigate();

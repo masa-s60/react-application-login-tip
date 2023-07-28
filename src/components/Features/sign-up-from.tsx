@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import Input from "../Common/atoms/input";
-import InputType from "../Common/atoms/input-type";
+import Input from "../Common/atoms/input-user-Info";
+import InputType from "../Common/atoms/input-header";
+import ErrorMessage from '../Common/atoms/error-message';
 import Button from "../Common/atoms/button";
 import { signUp } from "../Container/transition-func";
 import { useAuthContext } from "../../Context/auth-context";
@@ -29,12 +30,8 @@ const SignUpForm = () => {
           context?.setUser(result);
           navigate('/tipApp');
         }
-      })}
-      >
-        <p className="level-item has-text-danger">{errorMessage}</p>
-        {errors.UserName?.message && <div className="level-item has-text-danger">{errors.UserName.message as string}</div>}
-        {errors.Email?.message && <div className="level-item has-text-danger">{errors.Email.message as string}</div>}
-        {errors.Password?.message && <div className="level-item has-text-danger">{errors.Password.message as string}</div>}
+      })}>
+        <ErrorMessage errorMessage={errorMessage} errors={errors}/>
         <table className="table" style={{backgroundColor: 'rgba(255, 255, 255, 0)'}}>
           <tbody>
             <tr>

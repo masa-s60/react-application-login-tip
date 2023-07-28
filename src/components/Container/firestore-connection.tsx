@@ -1,15 +1,15 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, doc, query, where, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
-import { typeUserList } from "../../types/type";
+import { typeUser } from "../../types/type";
 
 export const getAllUsersDocuments = async () => {
-  let usersArray = [];
+  let arrayUsers = [];
   const querySnapshot = await getDocs(collection(db, 'users'));
   for(const usersDoc of querySnapshot.docs) {
-    usersArray.push(usersDoc.data());
-    console.log(usersArray);
+    arrayUsers.push(usersDoc.data());
+    console.log(arrayUsers);
   }
-  return usersArray;
+  return arrayUsers;
 }
 
 export const getUserStatus = async (Email: string, Password: string) => {
@@ -24,7 +24,7 @@ export const getUserStatus = async (Email: string, Password: string) => {
       Email: userInfo?.data().Email,
       Password: userInfo?.data().Password,
       Tip: userInfo?.data().Tip,
-    }  
+    }
   }
 }
 
@@ -36,7 +36,21 @@ export const checkRegistered = async (targetRef: any, mail: string, pass: string
   return {mail: !!registeredEmail.docs.length, pass: !!registeredPassword.docs.length}
 }
 
-export const sendTip = async (myInfo: any, targetInfo: any, inputMoney: string) => {
-  console.log(myInfo.UserName, targetInfo.UserName, inputMoney);
-
+export const updateTip = async (targetInfo: typeUser | undefined, inputMoney: number) => {
+  const usersCollectionRef = collection(db, 'users');
+  const querySnapshot = await getDocs(usersCollectionRef);
+  const userDoc = querySnapshot.docs.find(usersDoc => (usersDoc.data().Email === targetInfo?.Email) && (usersDoc.data().Password === targetInfo?.Password));
+  const userInfo = userDoc?.data();
+  if(userInfo === undefined) {
+    return userInfo;
+  } else {
+    const myInfoID = userDoc?.id;
+    const usersDocRef = doc(db, 'users', myInfoID as string);
+    const balance = userInfo?.Tip + inputMoney;
+    await updateDoc(usersDocRef, { Tip: balance });
+    return {
+      ...userInfo,
+      Tip: balance,
+    } as typeUser
+  }
 }

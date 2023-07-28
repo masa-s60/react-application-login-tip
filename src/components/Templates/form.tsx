@@ -15,15 +15,19 @@ const Form = () => {
     <div className="mt-6 transition-animation">
       {(() => {
         if(signUpDisplayHandling === false) {
-          return <div>
-            <LogInForm/>
-            <OtherLink link='新規登録はこちらから' signUpItems={signUpItems}/>
-          </div>
+          return(
+            <div>
+              <LogInForm/>
+              <OtherLink link='新規登録はこちらから' signUpItems={signUpItems}/>
+            </div>
+          )
         } else {
-          return <div>
-            <SignUpForm/>
-            <OtherLink link='ログインはこちらから' signUpItems={signUpItems}/>
-          </div>
+          return(
+            <div>
+              <SignUpForm/>
+              <OtherLink link='ログインはこちらから' signUpItems={signUpItems}/>
+            </div>
+          )
         }
       })()}
     </div>
