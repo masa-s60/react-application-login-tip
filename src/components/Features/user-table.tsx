@@ -1,6 +1,8 @@
 import UserList from "../Common/Molecules/user-list";
-import ModalWindow from "./modal-window";
+import ModalWindow from "../Templates/modal-window";
 import { useState } from "react";
+import fade from "../../styles/modal-fade.module.css";
+import { CSSTransition } from "react-transition-group";
 import { typeUser } from "../../types/type";
 
 const UserTable = () => {
@@ -23,17 +25,13 @@ const UserTable = () => {
   }
 
   const [active, setActive] = useState<boolean>(false);
-  const modalClassToggleItem = {
-    active,
-    setActive
-  }
 
   return(
-    <div className='level-item mb-6'>
-      <table style={{width: '60%'}}>
+    <div className="level-item mb-6">
+      <table style={{width: '70%'}}>
         <thead>
           <tr>
-            <td style={{fontWeight: 'bold', fontSize: '2vw', textAlign: 'center'}}>ユーザ名</td>
+            <td className="user-list-header" style={{textAlign: "center"}}>ユーザ名</td>
           </tr>
         </thead>
         <tbody>
@@ -41,16 +39,30 @@ const UserTable = () => {
             userInfoItem={userInfoItem} 
             showModalItem={showModalItem} 
             usersItem={usersItem}
-            modalClassToggleItem={modalClassToggleItem}
+            setActive={setActive}
           />
         </tbody>
       </table>
-      {showModal && <ModalWindow 
-        userInfoItem={userInfoItem} 
-        showModalItem={showModalItem} 
-        usersItem={usersItem}
-        modalClassToggleItem={modalClassToggleItem}
-      />}
+      <CSSTransition 
+        in={active} 
+        timeout={700} 
+        classNames={{
+          enter: fade.enter,
+          enterActive: fade.enterActive,
+          enterDone: fade.enterDone,
+          exit: fade.exit,
+          exitActive: fade.exitActive,
+          exitDone: fade.exitDone
+        }}
+        unmountOnExit
+      >
+        <ModalWindow 
+          userInfoItem={userInfoItem} 
+          showModalItem={showModalItem} 
+          usersItem={usersItem}
+          setActive={setActive}
+          />
+      </CSSTransition>
     </div>
   );
 }

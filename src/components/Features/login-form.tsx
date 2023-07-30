@@ -2,10 +2,10 @@ import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../Context/auth-context";
-import Input from "../Common/atoms/input-user-Info";
-import InputType from "../Common/atoms/input-header";
+import InputUserInfo from "../Common/atoms/input-user-Info";
+import InputHeader from "../Common/atoms/input-header";
 import ErrorMessage from '../Common/atoms/error-message';
-import Button from "../Common/atoms/button";
+import LogInButton from "../Common/atoms/login-button";
 import { logIn } from "../Container/transition-func";
 
 const LogInForm = () => { 
@@ -35,16 +35,16 @@ const LogInForm = () => {
         <table className="table" style={{backgroundColor: 'rgba(255, 255, 255, 0)'}}>
           <tbody>
             <tr>
-              <td><InputType type="メールアドレス"/></td>
-              <td><Input type="Email" register={register}/></td>
+              <td style={{verticalAlign: "middle"}}><InputHeader type="メールアドレス"/></td>
+              <td><InputUserInfo type="Email" register={register}/></td>
             </tr>
             <tr>
-              <td><InputType type="パスワード"/></td>
-              <td><Input type="Password" register={register}/></td>
+              <td style={{verticalAlign: "middle"}}><InputHeader type="パスワード"/></td>
+              <td><InputUserInfo type="Password" register={register}/></td>
             </tr>
           </tbody>
         </table>
-        <Button buttonValue='Login'/>
+        <LogInButton buttonValue='Login'/>
       </form>
     </div>
   )

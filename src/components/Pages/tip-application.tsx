@@ -15,7 +15,7 @@ const TipApplication = () => {
   },[]);
 
   return(
-    <div className='transition-animation' style={{width: '70%'}}>
+    <div className='transition-animation' style={{width: '80%'}}>
       <HeaderImage iconValue="fas fa-coins has-text-warning"/>
       <Dashboard/>
     </div>

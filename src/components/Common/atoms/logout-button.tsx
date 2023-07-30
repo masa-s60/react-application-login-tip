@@ -12,7 +12,7 @@ const LogOutButton = () => {
 
   return(
     <div style={{textAlign: 'right'}}>
-      <button className="button-style mr-0" onClick={() => logout()}>ログアウト</button>
+      <button className="logout-button-style" onClick={() => logout()}>Logout</button>
     </div>
   )
 }

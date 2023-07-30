@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useStateTypeShow } from '../../../types/type';
 
 const ModalSendButton:FC<{buttonValue: string, showModalItem: useStateTypeShow}> = (props) => {
+  
   return(
     <div className="modal-window-button-field">
       <button 

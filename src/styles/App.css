@@ -2,16 +2,31 @@
   color: rgb(167, 167, 167);
 }
 
-.input-style {
-  border-radius: 5px;
-  width:  30vw;
+.input-header {
+  font-size: 1.5vw;
+  text-align: center;
 }
 
-.button-style {
+.input-header-position {
+  vertical-align: middle;
+}
+
+.input-style {
+  border-radius: .5vw;
+  width:  30vw;
+  font-size: 1.5vw;
+}
+
+.other-link {
+  font-size: 1.5vw;
+}
+
+.login-button-style {
   border: 2.5px solid rgb(32, 32, 219);
-  border-radius: 10px;
+  border-radius: 2vw;
   background: linear-gradient(rgb(199, 216, 249), rgb(2, 85, 194));
   color: white;
+  font-size: 3vw;
   font-family: serif;
   font-weight: bold;
   letter-spacing: 2px;
@@ -19,7 +34,21 @@
   transition: .2s;
 }
 
-.button-style:hover {
+.logout-button-style {
+  border: 2.5px solid rgb(211, 18, 18);
+  border-radius: 2vw;
+  background: linear-gradient(rgb(250, 199, 199), rgb(199, 16, 31));
+  color: white;
+  font-size: 1.5vw;
+  font-family: serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: .1vw .8vw;
+  transition: .2s;
+}
+
+.login-button-style:hover,
+.logout-button-style:hover {
   cursor: pointer;
   opacity: .7;
 }
@@ -32,19 +61,6 @@
   background: linear-gradient(to right, rgb(247, 234, 189), rgb(189, 211, 239));
 }
 
-.transition-animation {
-  animation: fade_in .7s;
-}
-
-@keyframes fade_in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -53,37 +69,6 @@
   width: 100%;
   height: 100%;
   background-color:rgba(0, 0, 0, 0.5);
-  transition: .5s;
-}
-
-.slide-in {
-  animation: slideIn forwards .7s;
-}
-
-.slide-out {
-  animation: slideOut forwards .7s;
-}
-
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    top: 45%;
-  }
-  100% {
-    opacity: 1;
-    top: 50%;
-  }
-}
-
-@keyframes slideOut {
-  0% {
-    opacity: 1;
-    top: 50%;
-  }
-  100% {
-    opacity: 0;
-    top: 45%;
-  }
 }
 
 .modal-window {
@@ -120,4 +105,16 @@
 .close-button-style:hover {
   cursor: pointer;
   opacity: .5;
+}
+
+.user-list-header {
+  font-weight: bold;
+  font-size: 1.8vw;
+}
+
+.copyright {
+  font-size: 1vw;
+  color: gray;
+  text-align: center;
+  margin-top: 6vw;
 }

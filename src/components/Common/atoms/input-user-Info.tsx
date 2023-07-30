@@ -15,7 +15,7 @@ const InputUserInfo = ({type, register}: InputProps) => {
             message: `${type}は8文字以上入力してください`,
           },
         })} 
-        className="is-size-5 input-style"
+        className="input-style"
         name={type} 
         type="text" 
         placeholder={type}

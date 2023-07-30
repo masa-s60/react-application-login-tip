@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useAuthContext } from "../../../Context/auth-context";
 
 const UserName = () => {

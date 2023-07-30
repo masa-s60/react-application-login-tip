@@ -7,7 +7,6 @@ export const getAllUsersDocuments = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'));
   for(const usersDoc of querySnapshot.docs) {
     arrayUsers.push(usersDoc.data());
-    console.log(arrayUsers);
   }
   return arrayUsers;
 }

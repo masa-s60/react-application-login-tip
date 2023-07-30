@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { typeSetShow } from '../../../types/type';
+import { typeSetShow, typeSetActive } from '../../../types/type';
 
-const ModalWalletButton: FC<{setShowModal: typeSetShow}> = (props) => {
+const ModalWalletButton: FC<{setShowModal: typeSetShow, setActive: typeSetActive}> = (props) => {
 
   const closeModal = () => {
-    props.setShowModal(undefined);
-    // setTimeout( () => {
-    //   props.modalClassToggleItem.setActive(false);
-    // }, 700);
+    props.setActive(false);
+    setTimeout( () => {
+      props.setShowModal(undefined);
+    }, 700);
   }
 
   return(

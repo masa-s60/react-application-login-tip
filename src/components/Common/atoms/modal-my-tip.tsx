@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { useAuthContext } from "../../../Context/auth-context";
 
-const ModalMyTip: FC<{tip: string | number | undefined}> = (props) => {
+const ModalMyTip = () => {
+  const context = useAuthContext();
 
   return(
     <div>
-      <p className="mb-3">あなたの残高：{props.tip}</p>
+      <p className="mb-3">あなたの残高：{context?.user?.Tip}</p>
     </div>
   )
 }

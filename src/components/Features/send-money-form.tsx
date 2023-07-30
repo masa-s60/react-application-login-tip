@@ -1,18 +1,26 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import ErrorMessage from "../atoms/error-message";
-import InputTip from "../atoms/input-tip";
-import ModalSendButton from "../atoms/modal-send-button";
-import { useAuthContext } from "../../../Context/auth-context";
-import { sendTip } from "../../Container/tip-func";
-import { getAllUsersDocuments } from "../../Container/firestore-connection";
-import { typeUser, useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers } from "../../../types/type";
+import ErrorMessage from "../Common/atoms/error-message";
+import InputTip from "../Common/atoms/input-tip";
+import ModalSendButton from "../Common/atoms/modal-send-button";
+import { useAuthContext } from "../../Context/auth-context";
+import { sendTip } from "../Container/tip-func";
+import { getAllUsersDocuments } from "../Container/firestore-connection";
+import { typeUser, useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive } from "../../types/type";
 
-const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers}> = (props) => {
+const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
   const { register, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
   const context = useAuthContext();
   const [inputMoney, setInputMoney] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const closeModal = (userList: Partial<typeUser>[]) => {
+    props.setActive(false);
+    setTimeout( () => {
+      props.showModalItem.setShowModal(undefined);
+    }, 700);
+    props.usersItem.setUsers(userList);
+  }
 
   return(
     <div>
@@ -24,9 +32,9 @@ const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useS
           setErrorMessage('残高が足りません');
         } else {
           context?.setUser(sendMyResult as unknown as typeUser);
-          const usersList = await getAllUsersDocuments();
-          props.usersItem.setUsers(usersList);
-          props.showModalItem.setShowModal(undefined);
+          const allUserDoc = await getAllUsersDocuments();
+          const userList = allUserDoc.filter( (user) => user.Password !== context?.user?.Password);
+          closeModal(userList);
         }
       })}>
         <ErrorMessage errorMessage={errorMessage} errors={errors}/>

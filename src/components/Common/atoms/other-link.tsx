@@ -7,9 +7,9 @@ const OtherLink: FC<{link: string, signUpItems: typeSignUpDisplayHandlingItem}> 
   }
   
   return(
-    <div className="level-item mt-3">
+    <div className="level-item mt-5">
       <a 
-        className="is-size-5"
+        className="other-link"
         onClick={() => toggleInputArea()}
       >
         {props.link}

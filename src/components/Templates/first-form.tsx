@@ -4,7 +4,7 @@ import SignUpForm from "../Features/sign-up-from";
 import OtherLink from "../Common/atoms/other-link";
 import { typeSignUpDisplayHandlingItem } from "../../types/type";
 
-const Form = () => {
+const FirstForm = () => {
   const [signUpDisplayHandling, setSignUpDisplayHandling] = useState<boolean>(false);
   const signUpItems: typeSignUpDisplayHandlingItem = {
     signUpDisplayHandling,
@@ -34,4 +34,4 @@ const Form = () => {
   )
 }
 
-export default Form;
+export default FirstForm;

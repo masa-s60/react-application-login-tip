@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
-const Button:FC<{buttonValue: string}> = (props) => {
+const LogInButton:FC<{buttonValue: string}> = (props) => {
+
   return(
     <div className="level-item">
       <button 
-        className="is-size-3 mt-5 button-style"
+        className="mt-5 login-button-style"
         type="submit" 
       >
         {props.buttonValue}
@@ -13,4 +14,4 @@ const Button:FC<{buttonValue: string}> = (props) => {
   )
 }
 
-export default Button;
+export default LogInButton;
