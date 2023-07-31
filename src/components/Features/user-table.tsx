@@ -4,7 +4,6 @@ import { useState } from "react";
 import fade from "../../styles/modal-fade.module.css";
 import { CSSTransition } from "react-transition-group";
 import { typeUser } from "../../types/type";
-import { Suspense } from 'react';
 
 const UserTable = () => {
   const [showModal, setShowModal] = useState<'WALLET' | 'SEND' | undefined>(undefined);
@@ -36,14 +35,12 @@ const UserTable = () => {
           </tr>
         </thead>
         <tbody>
-        <Suspense fallback={<p>...loading</p>}>
           <UserList 
             userInfoItem={userInfoItem} 
             showModalItem={showModalItem} 
             usersItem={usersItem}
             setActive={setActive}
           />
-        </Suspense>
         </tbody>
       </table>
       <CSSTransition 
