@@ -7,6 +7,9 @@ const UserList: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateT
   const context = useAuthContext();
 
   useEffect( () => {
+    setTimeout( () => {
+      console.log(5);
+    }, 5000);
     getAllUsersDocuments().then((result) => {
       if(result !== undefined) {
         const userList = result.filter( (user) => user.Password !== context?.user?.Password);

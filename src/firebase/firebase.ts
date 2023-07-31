@@ -20,4 +20,3 @@ const analytics = getAnalytics(app);
 export const db = getFirestore();
 export const auth = getAuth(app);
 export const userInfo = auth.currentUser;
-console.log(userInfo);
