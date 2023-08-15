@@ -1,4 +1,4 @@
-import UserList from "../Common/Molecules/user-list";
+import UserList from "../Orgainisms/user-list";
 import ModalWindow from "../Templates/modal-window";
 import { useState } from "react";
 import fade from "../../styles/modal-fade.module.css";
@@ -6,6 +6,7 @@ import { CSSTransition } from "react-transition-group";
 import { typeUser } from "../../types/type";
 
 const UserTable = () => {
+  
   const [showModal, setShowModal] = useState<'WALLET' | 'SEND' | undefined>(undefined);
   const showModalItem = {
     showModal,
@@ -61,7 +62,7 @@ const UserTable = () => {
           showModalItem={showModalItem} 
           usersItem={usersItem}
           setActive={setActive}
-          />
+        />
       </CSSTransition>
     </div>
   );

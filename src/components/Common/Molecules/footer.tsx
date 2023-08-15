@@ -1,10 +1,12 @@
-import Copyright from "../atoms/copyright";
+import Text from "../Atoms/text";
 
 const Footer = () => {
   
   return(
     <div>
-      <Copyright/>
+      <Text classValueText="copyright">
+        Copyright©2023 masa
+      </Text>
     </div>
   )
 }

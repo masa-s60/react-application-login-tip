@@ -2,9 +2,12 @@
   color: rgb(167, 167, 167);
 }
 
-.input-header {
+.input-label {
+  display: inline-block;
+  width: 11vw;
   font-size: 1.5vw;
-  text-align: center;
+  text-align: right;
+  margin-right: 1vw;
 }
 
 .input-header-position {
@@ -15,6 +18,10 @@
   border-radius: .5vw;
   width:  30vw;
   font-size: 1.5vw;
+}
+
+.input-width {
+  width: 80%;
 }
 
 .other-link {

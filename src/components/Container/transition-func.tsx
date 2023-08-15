@@ -2,6 +2,7 @@ import { getUserStatus, checkRegistered } from "./firestore-connection";
 import { FieldValues } from "react-hook-form";
 import { db } from '../../firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import { typeFormDisplayHandlingItem } from "../../types/type";
 
 export const signUp = ({UserName, Email, Password}: FieldValues): any => {
   return new Promise( (resolve) => {
@@ -30,7 +31,7 @@ export const signUp = ({UserName, Email, Password}: FieldValues): any => {
   });
 }
 
-export const logIn = ({Email, Password}: FieldValues): any => {
+export const login = ({Email, Password}: FieldValues): any => {
   return new Promise( (resolve) => {
     getUserStatus(Email, Password)
     .then( (response) => {
@@ -41,4 +42,13 @@ export const logIn = ({Email, Password}: FieldValues): any => {
       }
     })
   });
+}
+
+export const logout = (context: any, navigate: any) => {
+  context?.setUser(undefined);
+  navigate("/");
+}
+
+export const toggleForm = (handlingItem: typeFormDisplayHandlingItem) => {
+  handlingItem.setFormDisplayHandling(!handlingItem.formDisplayHandling);
 }

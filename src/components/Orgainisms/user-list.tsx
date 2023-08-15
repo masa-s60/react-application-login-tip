@@ -1,9 +1,10 @@
-import { getAllUsersDocuments } from "../../Container/firestore-connection";
+import { getAllUsersDocuments } from "../Container/firestore-connection";
 import { useEffect, FC } from "react";
-import { useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive, typeUser } from "../../../types/type";
-import { useAuthContext } from "../../../Context/auth-context";
+import { useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive, typeUser } from "../../types/type";
+import { useAuthContext } from "../../Context/auth-context";
 
 const UserList: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
+  
   const context = useAuthContext();
 
   useEffect( () => {

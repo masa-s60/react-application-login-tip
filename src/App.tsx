@@ -1,4 +1,4 @@
-import LogIn from './components/Pages/login';
+import Login from './components/Pages/login';
 import TipApplication from './components/Pages/tip-application';
 import { AuthProvider } from './Context/auth-context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -14,7 +14,7 @@ function App() {
         <div className='hero-body level-item'>
           <BrowserRouter>
             <Routes>
-              <Route path="/" Component={LogIn}/>
+              <Route path="/" Component={Login}/>
               <Route path="/tipApp" Component={TipApplication}/>
             </Routes>
           </BrowserRouter>

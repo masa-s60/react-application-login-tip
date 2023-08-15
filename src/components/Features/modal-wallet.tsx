@@ -1,27 +1,30 @@
-import ModalWalletInfo from "../Common/Molecules/modal-wallet-info";
-import ModalWalletButton from "../Common/atoms/modal-wallet-button";
+import Text from "../Common/Atoms/text";
+import Button from "../Common/Atoms/button";
+import { fadeOutModal } from "../Container/tip-func";
 import { FC } from "react";
 import { useStateTypeUserInfo, useStateTypeShow, typeSetActive } from "../../types/type";
 
 const ModalWallet: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, setActive: typeSetActive}> = (props) => {
 
-  const closeModal = () => {
-    props.setActive(false);
-    setTimeout( () => {
-      props.showModalItem.setShowModal(undefined);
-    }, 700);
-  }
-
   return(
-    <div className="overlay" onClick={() => closeModal()}>
+    <div className="overlay" onClick={() => fadeOutModal(props.showModalItem.setShowModal, props.setActive)}>
       <div className="modal-window" onClick={(e) => e.stopPropagation()}>
-        <ModalWalletInfo 
-          targetName={props.userInfoItem.userInfo?.UserName} 
-          tip={props.userInfoItem.userInfo?.Tip}
+        <div className="modal-window-info-field">
+          <Text classValueText="mb-5">
+            {props.userInfoItem.userInfo?.UserName}さんの残高
+          </Text>
+          <Text classValueText="mb-3">
+            {props.userInfoItem.userInfo?.Tip}
+          </Text>
+        </div>
+        <Button
+          classValueButtonContainer="modal-window-button-field"
+          classValueButton="close-button-style"
+          text="閉じる"
+          type="button"
+          onClickEvent={fadeOutModal}
+          onClickEventArgument={[props.showModalItem.setShowModal, props.setActive]}
         />
-        <ModalWalletButton
-          setShowModal={props.showModalItem.setShowModal}
-          setActive={props.setActive}/>
       </div>
     </div>
   )

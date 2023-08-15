@@ -1,10 +1,11 @@
-import HeaderImage from "../Common/atoms/header-image";
+import IconImage from "../Common/Atoms/icon-image";
 import Dashboard from "../Templates/dashboard";
 import { useAuthContext } from "../../Context/auth-context";
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const TipApplication = () => {
+  
   const navigate = useNavigate()
   const context = useAuthContext();
 
@@ -16,7 +17,12 @@ const TipApplication = () => {
 
   return(
     <div className='transition-animation' style={{width: '80%'}}>
-      <HeaderImage iconValue="fas fa-coins has-text-warning"/>
+      <IconImage 
+        classValueIconContainer="level-item"
+        styleValueIconContainer={{margin: '4vw 0 10vw 0'}}
+        classValueIcon="fas fa-coins has-text-warning"
+        styleValueIcon={{fontSize: '12vw'}}
+      />
       <Dashboard/>
     </div>
   )

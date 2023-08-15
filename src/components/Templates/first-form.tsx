@@ -1,31 +1,45 @@
 import { useState } from "react";
 import LogInForm from "../Features/login-form";
 import SignUpForm from "../Features/sign-up-from";
-import OtherLink from "../Common/atoms/other-link";
-import { typeSignUpDisplayHandlingItem } from "../../types/type";
+import Link from "../Common/Atoms/link";
+import { toggleForm } from "../Container/transition-func";
+import { typeFormDisplayHandlingItem } from "../../types/type";
 
 const FirstForm = () => {
-  const [signUpDisplayHandling, setSignUpDisplayHandling] = useState<boolean>(false);
-  const signUpItems: typeSignUpDisplayHandlingItem = {
-    signUpDisplayHandling,
-    setSignUpDisplayHandling
+  const [ formDisplayHandling, setFormDisplayHandling] = useState<boolean>(false);
+
+  const handlingItem: typeFormDisplayHandlingItem = {
+    formDisplayHandling,
+    setFormDisplayHandling
   }
 
   return(
     <div className="mt-6 transition-animation">
       {(() => {
-        if(signUpDisplayHandling === false) {
+        if(formDisplayHandling === false) {
           return(
             <div>
               <LogInForm/>
-              <OtherLink link='新規登録はこちらから' signUpItems={signUpItems}/>
+              <Link 
+                text='新規登録はこちらから' 
+                onClickEvent={toggleForm}
+                onClickEventArgument={handlingItem}
+                classValueAnchorContainer="level-item mt-5"
+                classValueAnchor="other-link"
+              />
             </div>
           )
         } else {
           return(
             <div>
               <SignUpForm/>
-              <OtherLink link='ログインはこちらから' signUpItems={signUpItems}/>
+              <Link 
+                text='ログインはこちらから'
+                onClickEvent={toggleForm}
+                onClickEventArgument={handlingItem}
+                classValueAnchorContainer="level-item mt-5"
+                classValueAnchor="other-link"
+              />
             </div>
           )
         }

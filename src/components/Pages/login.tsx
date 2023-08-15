@@ -2,7 +2,7 @@ import Header from "../Common/Molecules/header";
 import FirstForm from "../Templates/first-form";
 import Footer from "../Common/Molecules/footer";
 
-const LogIn = () => {
+const Login = () => {
 
   return(
     <div className='transition-animation'>
@@ -13,4 +13,4 @@ const LogIn = () => {
   )
 }
 
-export default LogIn;
+export default Login;
