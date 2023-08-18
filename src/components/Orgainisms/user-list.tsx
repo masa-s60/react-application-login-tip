@@ -1,16 +1,17 @@
 import { getAllUsersDocuments } from "../Container/firestore-connection";
 import { useEffect, FC } from "react";
+import { useRecoilValue } from "recoil";
+import { authSessionState } from "../../recoil/atom";
 import { useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive, typeUser } from "../../types/type";
-import { useAuthContext } from "../../Context/auth-context";
 
 const UserList: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
-  
-  const context = useAuthContext();
+
+  const sessionState = useRecoilValue(authSessionState);
 
   useEffect( () => {
     getAllUsersDocuments().then((result) => {
       if(result !== undefined) {
-        const userList = result.filter( (user) => user.Password !== context?.user?.Password);
+        const userList = result.filter( (user) => user.Password !== sessionState.Password);
         props.usersItem.setUsers(userList);
       } else {
         props.usersItem.setUsers([]);

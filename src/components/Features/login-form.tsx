@@ -1,23 +1,17 @@
 import { useForm, Controller } from 'react-hook-form';
-import { useState, useEffect } from 'react';
+import { useState, FC } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../Context/auth-context";
 import Input from '../Common/Atoms/input';
 import Button from '../Common/Atoms/button';
 import { login } from "../Container/transition-func";
+import { typeUser } from "../../types/type";
+import { SetterOrUpdater } from "recoil";
 
-const LogInForm = () => { 
+const LogInForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => { 
   
   const { register, control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
   const navigate = useNavigate();
-  const context = useAuthContext();
   const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect( () => {
-    if(context?.user) {
-      navigate('/tipApp');
-    } 
-  },[]);
 
   return(
     <div className="columns mt-4">
@@ -26,7 +20,7 @@ const LogInForm = () => {
         if(result === false) {
           setErrorMessage('メールアドレスかパスワードが間違っています');
         } else if(result) {
-          context?.setUser(result);
+          props.setSession(result);
           navigate('/tipApp');
         }
       })}>
@@ -50,6 +44,7 @@ const LogInForm = () => {
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
+                      placeholder='Email'
                     />
                   }
                   rules={{ 
@@ -84,6 +79,7 @@ const LogInForm = () => {
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
+                      placeholder='Password'
                     />
                   }
                   rules={{ 

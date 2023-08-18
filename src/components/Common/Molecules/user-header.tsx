@@ -1,18 +1,19 @@
 import Text from "../Atoms/text";
-import { useAuthContext } from "../../../Context/auth-context";
+import { useRecoilValue } from "recoil";
+import { authSessionState } from "../../../recoil/atom";
 
 const UserHeader = () => {
-  const context = useAuthContext();
+  const sessionState = useRecoilValue(authSessionState);
 
   return(
     <div className="mb-6" style={{display: "flex", justifyContent: "space-around"}}>
       <Text styleValueText={{fontWeight: 'bold', fontSize: '1.5vw'}}>
-        {context?.user?.UserName}さんようこそ!!
+        {sessionState.UserName}さんようこそ!!
       </Text>
       <Text
         styleValueText={{fontWeight: 'bold', fontSize: '1.5vw'}}
       >
-        残高：{context?.user?.Tip}
+        残高：{sessionState.Tip}
       </Text>
     </div>
   )

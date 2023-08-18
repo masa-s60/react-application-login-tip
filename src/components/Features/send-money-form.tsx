@@ -3,28 +3,29 @@ import { useForm, Controller } from "react-hook-form";
 import Input from "../Common/Atoms/input";
 import Button from "../Common/Atoms/button";
 import { fadeOutModal } from "../Container/tip-func";
-import { useAuthContext } from "../../Context/auth-context";
 import { sendTip } from "../Container/tip-func";
 import { getAllUsersDocuments } from "../Container/firestore-connection";
+import { useRecoilState } from "recoil";
+import { authSessionState } from "../../recoil/atom";
 import { typeUser, useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive } from "../../types/type";
 
 const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
-  
+
+  const [session, setSession] = useRecoilState<typeUser>(authSessionState);
   const { register, control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
-  const context = useAuthContext();
   const [inputMoney, setInputMoney] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   return(
     <div>
       <form onSubmit={handleSubmit( async () => {
-        const [sendMyResult, sentTargetResult] = await sendTip(context?.user, props.userInfoItem.userInfo, inputMoney);
+        const [sendMyResult, sentTargetResult] = await sendTip(session, props.userInfoItem.userInfo, inputMoney);
         if((sendMyResult === undefined) || (sentTargetResult === undefined)) {
           setErrorMessage('送金はできませんでした');
         } else {
-          context?.setUser(sendMyResult as unknown as typeUser);
+          setSession(sendMyResult as unknown as typeUser);
           const allUserDoc = await getAllUsersDocuments();
-          const userList = allUserDoc.filter( (user) => user.Password !== context?.user?.Password);
+          const userList = allUserDoc.filter( (user) => user.Password !== session.Password);
           fadeOutModal(props.showModalItem.setShowModal ,props.setActive);
           props.usersItem.setUsers(userList);
         }
@@ -65,7 +66,7 @@ const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useS
               message: "1以上の数値を入力してください",
             },
             max: {
-              value: Number(context?.user?.Tip),
+              value: Number(session.Tip),
               message: "残高が足りません",
             }
           }}

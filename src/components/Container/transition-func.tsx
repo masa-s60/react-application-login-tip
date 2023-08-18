@@ -2,7 +2,8 @@ import { getUserStatus, checkRegistered } from "./firestore-connection";
 import { FieldValues } from "react-hook-form";
 import { db } from '../../firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
-import { typeFormDisplayHandlingItem } from "../../types/type";
+import { SetterOrUpdater } from "recoil";
+import { typeFormDisplayHandlingItem, typeUser } from "../../types/type";
 
 export const signUp = ({UserName, Email, Password}: FieldValues): any => {
   return new Promise( (resolve) => {
@@ -44,8 +45,8 @@ export const login = ({Email, Password}: FieldValues): any => {
   });
 }
 
-export const logout = (context: any, navigate: any) => {
-  context?.setUser(undefined);
+export const logout = (setSession: SetterOrUpdater<typeUser | undefined>, navigate: Function) => {
+  setSession(undefined);
   navigate("/");
 }
 

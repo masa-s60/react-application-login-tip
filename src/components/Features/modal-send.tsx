@@ -1,13 +1,14 @@
 import Text from "../Common/Atoms/text";
-import { useAuthContext } from "../../Context/auth-context";
 import SendMoneyForm from "./send-money-form";
 import { fadeOutModal } from "../Container/tip-func";
 import { FC } from "react";
+import { useRecoilValue } from "recoil";
+import { authSessionState } from "../../recoil/atom";
 import { useStateTypeUserInfo, useStateTypeShow, useStateTypeUsers, typeSetActive } from "../../types/type";
 
 const ModalSend: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
-  
-  const context = useAuthContext();
+
+  const sessionState = useRecoilValue(authSessionState);
 
   return(
     <div className="overlay" onClick={() => fadeOutModal(props.showModalItem.setShowModal, props.setActive)}>
@@ -16,7 +17,7 @@ const ModalSend: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useState
           classValueTextContainer="modal-window-info-field"
           classValueText="mb-3"
         >
-          あなたの残高：{context?.user?.Tip}
+          あなたの残高：{sessionState.Tip}
         </Text>
         <Text
           styleValueTextContainer={{paddingBottom: ".5vw"}}

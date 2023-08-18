@@ -1,16 +1,18 @@
 import IconImage from "../Common/Atoms/icon-image";
 import Dashboard from "../Templates/dashboard";
-import { useAuthContext } from "../../Context/auth-context";
 import { useEffect } from 'react';
+import { authSessionState } from "../../recoil/atom";
+import { useRecoilState } from "recoil";
 import { useNavigate } from 'react-router-dom';
+import { typeUser } from "../../types/type";
 
 const TipApplication = () => {
-  
+
+  const [session, setSession] = useRecoilState<typeUser>(authSessionState);
   const navigate = useNavigate()
-  const context = useAuthContext();
 
   useEffect( () => {
-    if(!context?.user) {
+    if(!session) {
       navigate('/');
     } 
   },[]);
@@ -23,7 +25,7 @@ const TipApplication = () => {
         classValueIcon="fas fa-coins has-text-warning"
         styleValueIcon={{fontSize: '12vw'}}
       />
-      <Dashboard/>
+      <Dashboard setSession={setSession}/>
     </div>
   )
 }

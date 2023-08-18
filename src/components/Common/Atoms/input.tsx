@@ -25,7 +25,7 @@ const Input = forwardRef<HTMLInputElement, inputProps> ((props, ref) => {
         name={props.name} 
         type={props.type}
         maxLength={props.maxLength} 
-        placeholder={props.name}
+        placeholder={props.placeholder}
         onChange={(e) => onChangeEvent(e.target.value)}
         onFocus={() => onFocusEvent()}
       />

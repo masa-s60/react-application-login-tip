@@ -60,6 +60,7 @@ export type inputProps = {
   styleValueLabel?: CSSProperties,
   label?: string,
   maxLength?: number,
+  placeholder?: string,
   onChangeEvent?: Function,
   onChangeEventArgument?: any,
   onFocusEvent?: Function,

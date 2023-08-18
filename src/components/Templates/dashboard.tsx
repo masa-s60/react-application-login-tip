@@ -3,11 +3,13 @@ import UserTable from "../Features/user-table";
 import Text from "../Common/Atoms/text";
 import Button from "../Common/Atoms/button";
 import { logout } from "../Container/transition-func";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../Context/auth-context";
+import { SetterOrUpdater } from "recoil";
+import { typeUser } from "../../types/type";
 
-const Dashboard = () => {
-  const context = useAuthContext();
+const Dashboard: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
+
   const navigate = useNavigate();
 
   return(
@@ -27,7 +29,7 @@ const Dashboard = () => {
         text="Logout"
         type="submit"
         onClickEvent={logout}
-        onClickEventArgument={[context, navigate]}
+        onClickEventArgument={[props.setSession, navigate]}
       />
     </div>
   )

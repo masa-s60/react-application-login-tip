@@ -1,23 +1,17 @@
 import { useForm, Controller } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useState, FC } from 'react';
 import { useNavigate } from "react-router-dom";
 import Input from '../Common/Atoms/input';
 import Button from '../Common/Atoms/button';
 import { signUp } from "../Container/transition-func";
-import { useAuthContext } from "../../Context/auth-context";
+import { typeUser } from "../../types/type";
+import { SetterOrUpdater } from "recoil";
 
-const SignUpForm = () => { 
-  
+const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => { 
+
   const { register, control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
   const navigate = useNavigate();
-  let context = useAuthContext();
   const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect( () => {
-    if(context?.user) {
-      navigate('/tipApp');
-    } 
-  },[]);
 
   return(
     <div className="columns mt-4">
@@ -26,7 +20,7 @@ const SignUpForm = () => {
         if(result === false) {
           setErrorMessage('既に登録があります');
         } else if(result) {
-          context?.setUser(result);
+          props.setSession(result);
           navigate('/tipApp');
         }
       })}>
@@ -51,6 +45,7 @@ const SignUpForm = () => {
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
+                      placeholder='UserName'
                     />
                   }
                   rules={{ 
@@ -81,6 +76,7 @@ const SignUpForm = () => {
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
+                      placeholder='Email'
                     />
                   }
                   rules={{ 
@@ -115,6 +111,7 @@ const SignUpForm = () => {
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
+                      placeholder='Password'
                     />
                   }
                   rules={{ 
