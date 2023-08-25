@@ -4,8 +4,8 @@ const Footer = () => {
   
   return(
     <div>
-      <Text classValueText="copyright">
-        Copyright©2023 masa
+      <Text>
+        <p className="copyright">Copyright©2023 masa</p>
       </Text>
     </div>
   )

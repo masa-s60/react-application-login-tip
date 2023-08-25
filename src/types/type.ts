@@ -1,9 +1,8 @@
-import { Dispatch, ReactNode, SetStateAction, CSSProperties } from "react";
-import { UseFormRegister, FieldValues } from 'react-hook-form';
+import { Dispatch, ReactNode, SetStateAction, CSSProperties, ChangeEvent } from "react";
 
 export type typeChildren = {
-  children: ReactNode
-};
+  children: ReactNode,
+}
 
 export type typeSetDisplayHandling = Dispatch<SetStateAction<boolean>>;
 export type typeFormDisplayHandlingItem = {
@@ -25,7 +24,7 @@ export type useStateTypeActive = {
 
 export type useStateSetUserInfo = Dispatch<SetStateAction<typeUser | undefined>>;
 export type useStateTypeUserInfo = {
-  userInfo: typeUser | undefined,
+  userInfo?: typeUser,
   setUserInfo: useStateSetUserInfo,
 }
 
@@ -37,21 +36,21 @@ export type useStateTypeUsers = {
 
 export type useStateSetUser = Dispatch<SetStateAction<typeUser | undefined>>;
 export type typeUser = {
-  UserName: string,
-  Email: string,
-  Password: string,
+  UserName?: string,
+  Email?: string,
+  Password?: string,
   Tip?: number | string,
 }
 
 export type typeAuthState = {
-  user: typeUser | undefined,
+  user?: typeUser,
   setUser: useStateSetUser
-};
+}
 
 export type inputProps = {
   name: string,
   type: string,
-  register: UseFormRegister<FieldValues>,
+  value: string,
   classValueInputContainer?: string,
   styleValueInputContainer?: CSSProperties,
   classValueInput?: string,
@@ -61,29 +60,24 @@ export type inputProps = {
   label?: string,
   maxLength?: number,
   placeholder?: string,
-  onChangeEvent?: Function,
-  onChangeEventArgument?: any,
-  onFocusEvent?: Function,
-  onFocusEventArgument?: any
-};
+  onChangeEvent: ((S?: string) => void),
+  onFocusEvent?: (() => void),
+}
 
 export type buttonProps = {
+  children?: ReactNode | string,
   classValueButtonContainer?: string,
   styleValueButtonContainer?: CSSProperties,
   classValueButton?: string,
   styleValueButton?: CSSProperties,
-  text: string,
-  type: 'submit' | 'reset' | 'button' | undefined,
-  onClickEvent?: Function,
-  onClickEventArgument?: any,
+  type?: 'submit' | 'reset' | 'button',
+  onClickEvent?: () => void,
 }
 
 export type textProps = {
+  children?: ReactNode | string,
   classValueTextContainer?: string,
   styleValueTextContainer?: CSSProperties,
-  classValueText?: string,
-  styleValueText?: CSSProperties,
-  children: ReactNode | undefined,
 }
 
 export type iconProps = {
@@ -94,9 +88,8 @@ export type iconProps = {
 }
 
 export type linkProps = {
-  text: string,
-  onClickEvent?: Function,
-  onClickEventArgument?: typeFormDisplayHandlingItem,
+  children?: ReactNode | string,
+  onClickEvent?: () => void,
   classValueAnchorContainer?: string,
   styleValueAnchorContainer?: CSSProperties,
   classValueAnchor?: string,

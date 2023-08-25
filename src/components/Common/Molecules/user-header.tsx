@@ -7,13 +7,15 @@ const UserHeader = () => {
 
   return(
     <div className="mb-6" style={{display: "flex", justifyContent: "space-around"}}>
-      <Text styleValueText={{fontWeight: 'bold', fontSize: '1.5vw'}}>
-        {sessionState.UserName}さんようこそ!!
+      <Text>
+        <p style={{fontWeight: 'bold', fontSize: '1.5vw'}}>
+          {sessionState.UserName}さんようこそ!!
+        </p>
       </Text>
-      <Text
-        styleValueText={{fontWeight: 'bold', fontSize: '1.5vw'}}
-      >
-        残高：{sessionState.Tip}
+      <Text>
+        <p style={{fontWeight: 'bold', fontSize: '1.5vw'}}>
+          残高：{sessionState.Tip}
+        </p>
       </Text>
     </div>
   )

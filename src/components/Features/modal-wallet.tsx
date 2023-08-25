@@ -10,21 +10,21 @@ const ModalWallet: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useSta
     <div className="overlay" onClick={() => fadeOutModal(props.showModalItem.setShowModal, props.setActive)}>
       <div className="modal-window" onClick={(e) => e.stopPropagation()}>
         <div className="modal-window-info-field">
-          <Text classValueText="mb-5">
-            {props.userInfoItem.userInfo?.UserName}さんの残高
+          <Text>
+            <p className="mb-5">{props.userInfoItem.userInfo?.UserName}さんの残高</p>
           </Text>
-          <Text classValueText="mb-3">
-            {props.userInfoItem.userInfo?.Tip}
+          <Text>
+            <p className="mb-3">{props.userInfoItem.userInfo?.Tip}</p>
           </Text>
         </div>
         <Button
           classValueButtonContainer="modal-window-button-field"
           classValueButton="close-button-style"
-          text="閉じる"
           type="button"
-          onClickEvent={fadeOutModal}
-          onClickEventArgument={[props.showModalItem.setShowModal, props.setActive]}
-        />
+          onClickEvent={() => fadeOutModal(props.showModalItem.setShowModal, props.setActive) as unknown as () => void}
+        >
+          <span>閉じる</span>
+        </Button>
       </div>
     </div>
   )

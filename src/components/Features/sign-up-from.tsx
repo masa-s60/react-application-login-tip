@@ -1,15 +1,15 @@
 import { useForm, Controller } from 'react-hook-form';
 import { useState, FC } from 'react';
 import { useNavigate } from "react-router-dom";
-import Input from '../Common/Atoms/input';
+import Input from '../Common/Molecules/input';
 import Button from '../Common/Atoms/button';
 import { signUp } from "../Container/transition-func";
 import { typeUser } from "../../types/type";
 import { SetterOrUpdater } from "recoil";
 
-const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => { 
+const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (props) => { 
 
-  const { register, control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
+  const { control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -36,11 +36,12 @@ const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
                   name="UserName"
                   control={control}
                   defaultValue=""
-                  render={({ field }) => 
-                    <Input
-                      {...field} 
+                  render={({ field: {name, value, onChange } }) => 
+                    <Input 
+                      name={name}
                       type="text"
-                      register={register} 
+                      value={value}
+                      onChangeEvent={onChange}
                       label="UserName"
                       classValueLabel="input-label"
                       classValueInput="input-style"
@@ -67,11 +68,12 @@ const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
                   name="Email"
                   control={control}
                   defaultValue=""
-                  render={({ field }) => 
-                    <Input
-                      {...field} 
+                  render={({ field: {name, value, onChange } }) => 
+                    <Input 
+                      name={name}
                       type="text"
-                      register={register} 
+                      value={value}
+                      onChangeEvent={onChange}
                       label="Email"
                       classValueLabel="input-label"
                       classValueInput="input-style"
@@ -102,11 +104,12 @@ const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
                   name="Password"
                   control={control}
                   defaultValue=""
-                  render={({ field }) => 
-                    <Input
-                      {...field} 
+                  render={({ field: {name, value, onChange } }) => 
+                    <Input 
+                      name={name}
                       type="text"
-                      register={register} 
+                      value={value}
+                      onChangeEvent={onChange}
                       label="Password"
                       classValueLabel="input-label"
                       classValueInput="input-style"
@@ -132,9 +135,10 @@ const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
         <Button
           classValueButtonContainer="level-item"
           classValueButton="mt-5 login-button-style"
-          text="新規登録"
           type="submit"
-        />
+        >
+          <span>新規登録</span>
+        </Button>
       </form>
     </div>
   )

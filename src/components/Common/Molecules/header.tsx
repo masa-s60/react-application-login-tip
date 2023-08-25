@@ -11,12 +11,10 @@ const Header = () => {
         classValueIcon="fas fa-user-circle has-text-info"
         styleValueIcon={{fontSize: '12vw'}}
       />
-      <Text
-        classValueTextContainer="level-item"
-        classValueText="has-text-dark"
-        styleValueText={{fontSize: '4vw'}}
-      >
-        𝓽𝓲𝓹 𝓪𝓹𝓹𝓵𝓲𝓬𝓪𝓽𝓲𝓸𝓷
+      <Text classValueTextContainer="level-item">
+        <p className="has-text-dark" style={{fontSize: '4vw'}}>
+          𝓽𝓲𝓹 𝓪𝓹𝓹𝓵𝓲𝓬𝓪𝓽𝓲𝓸𝓷
+        </p>
       </Text>
     </div>
   )

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import Input from "../Common/Atoms/input";
+import Input from "../Common/Molecules/input";
 import Button from "../Common/Atoms/button";
 import { fadeOutModal } from "../Container/tip-func";
 import { sendTip } from "../Container/tip-func";
@@ -12,14 +12,13 @@ import { typeUser, useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, ty
 const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
 
   const [session, setSession] = useRecoilState<typeUser>(authSessionState);
-  const { register, control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
-  const [inputMoney, setInputMoney] = useState<string>('');
+  const { control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   return(
     <div>
-      <form onSubmit={handleSubmit( async () => {
-        const [sendMyResult, sentTargetResult] = await sendTip(session, props.userInfoItem.userInfo, inputMoney);
+      <form onSubmit={handleSubmit( async ({Tip}) => {
+        const [sendMyResult, sentTargetResult] = await sendTip(session, props.userInfoItem.userInfo, Tip);
         if((sendMyResult === undefined) || (sentTargetResult === undefined)) {
           setErrorMessage('送金はできませんでした');
         } else {
@@ -36,15 +35,14 @@ const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useS
           name="Tip"
           control={control}
           defaultValue=""
-          render={({ field }) => 
-            <Input 
-              {...field} 
+          render={({ field: {name, value, onChange} }) => 
+            <Input
+              name={name}
               type="text"
-              register={register} 
+              value={value}
+              onChangeEvent={onChange}
               classValueInput="is-size-6 input-style mb-5 input-width"
-              onChangeEvent={setInputMoney}
-              onFocusEvent={setErrorMessage}
-              onFocusEventArgument=""
+              onFocusEvent={() => setErrorMessage('')}
               maxLength={8}
             />
           }
@@ -74,9 +72,10 @@ const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useS
         <Button
           classValueButtonContainer="modal-window-button-field"
           classValueButton="close-button-style"
-          text="送金"
           type="submit"
-        />
+        >
+          <span>送金</span>
+        </Button>
       </form>
     </div>
   )

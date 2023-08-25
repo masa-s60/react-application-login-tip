@@ -5,7 +5,7 @@ const Text: FC<textProps> = (props) => {
 
   return(
     <div className={props.classValueTextContainer} style={props.styleValueTextContainer}>
-      <p className={props.classValueText} style={props.styleValueText}>{props.children}</p>
+      {props.children}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import UserList from "../Orgainisms/user-list";
+import UserList from "../Organisms/user-list";
 import ModalWindow from "../Templates/modal-window";
 import { useState } from "react";
 import fade from "../../styles/modal-fade.module.css";

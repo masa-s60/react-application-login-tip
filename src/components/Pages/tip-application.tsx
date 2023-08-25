@@ -8,7 +8,7 @@ import { typeUser } from "../../types/type";
 
 const TipApplication = () => {
 
-  const [session, setSession] = useRecoilState<typeUser>(authSessionState);
+  const [session, setSession] = useRecoilState<typeUser | undefined>(authSessionState);
   const navigate = useNavigate()
 
   useEffect( () => {

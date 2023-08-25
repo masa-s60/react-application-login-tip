@@ -45,7 +45,7 @@ export const login = ({Email, Password}: FieldValues): any => {
   });
 }
 
-export const logout = (setSession: SetterOrUpdater<typeUser | undefined>, navigate: Function) => {
+export const logout = (setSession: SetterOrUpdater<typeUser | undefined>, navigate: (T: string) => void) => {
   setSession(undefined);
   navigate("/");
 }

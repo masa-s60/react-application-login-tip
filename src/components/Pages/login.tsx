@@ -9,7 +9,7 @@ import { typeUser } from "../../types/type";
 
 const Login = () => {
 
-  const [session, setSession] = useRecoilState<typeUser>(authSessionState);
+  const [session, setSession] = useRecoilState<typeUser | undefined>(authSessionState);
   const navigate = useNavigate();
   
   useEffect( () => {

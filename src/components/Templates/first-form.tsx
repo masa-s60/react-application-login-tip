@@ -6,7 +6,7 @@ import { toggleForm } from "../Container/transition-func";
 import { typeFormDisplayHandlingItem, typeUser } from "../../types/type";
 import { SetterOrUpdater } from "recoil";
 
-const FirstForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
+const FirstForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (props) => {
 
   const [formDisplayHandling, setFormDisplayHandling] = useState<boolean>(false);
 
@@ -23,25 +23,25 @@ const FirstForm: FC<{setSession: SetterOrUpdater<typeUser>}> = (props) => {
             <div>
               <LoginForm setSession={props.setSession}/>
               <Link 
-                text='新規登録はこちらから' 
-                onClickEvent={toggleForm}
-                onClickEventArgument={handlingItem}
+                onClickEvent={() => toggleForm(handlingItem)}
                 classValueAnchorContainer="level-item mt-5"
                 classValueAnchor="other-link"
-              />
+              >
+                新規登録はこちらから
+              </Link>
             </div>
           )
         } else {
           return(
             <div>
               <SignUpForm setSession={props.setSession}/>
-              <Link 
-                text='ログインはこちらから'
-                onClickEvent={toggleForm}
-                onClickEventArgument={handlingItem}
+              <Link
+                onClickEvent={() => toggleForm(handlingItem)}
                 classValueAnchorContainer="level-item mt-5"
                 classValueAnchor="other-link"
-              />
+              >
+                ログインはこちらから
+              </Link>
             </div>
           )
         }
