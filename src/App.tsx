@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Login from './components/Pages/login';
+import TipApplication from './components/Pages/tip-application';
+import { RecoilRoot } from 'recoil';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './styles/App.css';
+import 'bulma/css/bulma.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className='hero is-fullheight background-gradation'>
+        <div className='hero-body level-item'>
+          <RecoilRoot>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" Component={Login}/>
+                <Route path="/tipApp" Component={TipApplication}/>
+              </Routes>
+            </BrowserRouter>
+          </RecoilRoot>
+        </div>
+      </div>
   );
 }
 
