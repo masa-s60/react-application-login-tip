@@ -1,4 +1,4 @@
-import Text from "../Atoms/text";
+import Text from "../Common/Atoms/text";
 
 const Footer = () => {
   

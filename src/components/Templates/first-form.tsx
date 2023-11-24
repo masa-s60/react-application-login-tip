@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import LoginForm from "../Features/login-form";
-import SignUpForm from "../Features/sign-up-from";
+import LoginForm from "../Features/Auth/login-form";
+import SignUpForm from "../Features/Auth/sign-up-from";
 import Link from "../Common/Atoms/link";
 import { toggleForm } from "../Container/transition-func";
 import { typeFormDisplayHandlingItem, typeUser } from "../../types/type";

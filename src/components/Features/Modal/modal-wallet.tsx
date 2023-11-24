@@ -1,8 +1,8 @@
-import Text from "../Common/Atoms/text";
-import Button from "../Common/Atoms/button";
-import { fadeOutModal } from "../Container/tip-func";
+import Text from "../../Common/Atoms/text";
+import Button from "../../Common/Atoms/button";
+import { fadeOutModal } from "../../Container/tip-func";
 import { FC } from "react";
-import { useStateTypeUserInfo, useStateTypeShow, typeSetActive } from "../../types/type";
+import { useStateTypeUserInfo, useStateTypeShow, typeSetActive } from "../../../types/type";
 
 const ModalWallet: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, setActive: typeSetActive}> = (props) => {
 

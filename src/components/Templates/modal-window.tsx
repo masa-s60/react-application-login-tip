@@ -1,6 +1,6 @@
 import { FC } from "react";
-import ModalWallet from "../Features/modal-wallet";
-import ModalSend from "../Features/modal-send";
+import ModalWallet from "../Features/Modal/modal-wallet";
+import ModalSend from "../Features/Modal/modal-send";
 import { useStateTypeUserInfo, useStateTypeShow, useStateTypeUsers, typeSetActive } from "../../types/type";
 
 const ModalWindow: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {

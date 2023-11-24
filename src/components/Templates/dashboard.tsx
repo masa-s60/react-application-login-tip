@@ -1,5 +1,5 @@
-import UserHeader from "../Common/Molecules/user-header";
-import UserTable from "../Features/user-table";
+import UserHeader from "../Features/User/user-header";
+import UserTable from "../Features/User/user-table";
 import Text from "../Common/Atoms/text";
 import Button from "../Common/Atoms/button";
 import { logout } from "../Container/transition-func";

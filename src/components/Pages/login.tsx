@@ -1,6 +1,6 @@
-import Header from "../Common/Molecules/header";
+import Header from "../Organisms/header";
 import FirstForm from "../Templates/first-form";
-import Footer from "../Common/Molecules/footer";
+import Footer from "../Organisms/footer";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { authSessionState } from "../../recoil/atom";

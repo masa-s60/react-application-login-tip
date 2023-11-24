@@ -1,5 +1,5 @@
-import IconImage from "../Atoms/icon-image";
-import Text from "../Atoms/text";
+import IconImage from "../Common/Atoms/icon-image";
+import Text from "../Common/Atoms/text";
 
 const Header = () => {
 

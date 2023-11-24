@@ -1,9 +1,9 @@
-import UserList from "../Organisms/user-list";
-import ModalWindow from "../Templates/modal-window";
+import UserList from "./user-list";
+import ModalWindow from "../../Templates/modal-window";
 import { useState } from "react";
-import fade from "../../styles/modal-fade.module.css";
+import fade from "../../../styles/modal-fade.module.css";
 import { CSSTransition } from "react-transition-group";
-import { typeUser } from "../../types/type";
+import { typeUser } from "../../../types/type";
 
 const UserTable = () => {
   

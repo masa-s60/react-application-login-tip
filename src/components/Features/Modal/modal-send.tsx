@@ -1,10 +1,10 @@
-import Text from "../Common/Atoms/text";
-import SendMoneyForm from "../Organisms/send-money-form";
-import { fadeOutModal } from "../Container/tip-func";
+import Text from "../../Common/Atoms/text";
+import SendMoneyForm from "../Auth/send-money-form";
+import { fadeOutModal } from "../../Container/tip-func";
 import { FC } from "react";
 import { useRecoilValue } from "recoil";
-import { authSessionState } from "../../recoil/atom";
-import { useStateTypeUserInfo, useStateTypeShow, useStateTypeUsers, typeSetActive } from "../../types/type";
+import { authSessionState } from "../../../recoil/atom";
+import { useStateTypeUserInfo, useStateTypeShow, useStateTypeUsers, typeSetActive } from "../../../types/type";
 
 const ModalSend: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
 

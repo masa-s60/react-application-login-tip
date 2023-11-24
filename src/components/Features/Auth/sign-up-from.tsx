@@ -1,13 +1,13 @@
 import { useForm, Controller } from 'react-hook-form';
 import { useState, FC } from 'react';
 import { useNavigate } from "react-router-dom";
-import Input from '../Common/Molecules/input';
-import Button from '../Common/Atoms/button';
-import { login } from "../Container/transition-func";
-import { typeUser } from "../../types/type";
+import Input from '../../Common/Molecules/input';
+import Button from '../../Common/Atoms/button';
+import { signUp } from "../../Container/transition-func";
+import { typeUser } from "../../../types/type";
 import { SetterOrUpdater } from "recoil";
 
-const LogInForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (props) => { 
+const SignUpForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (props) => { 
 
   const { control, handleSubmit, formState: { errors } } = useForm({criteriaMode: 'all'});
   const navigate = useNavigate();
@@ -15,16 +15,17 @@ const LogInForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (prop
 
   return(
     <div className="columns mt-4">
-      <form onSubmit={handleSubmit(async ({Email, Password}) => {
-        const result = await login({Email, Password});
+      <form onSubmit={handleSubmit(async ({UserName, Email, Password}) => {
+        const result = await signUp({UserName, Email, Password});
         if(result === false) {
-          setErrorMessage('メールアドレスかパスワードが間違っています');
+          setErrorMessage('既に登録があります');
         } else if(result) {
           props.setSession(result);
           navigate('/tipApp');
         }
       })}>
         {errorMessage && <p className="level-item has-text-danger mb-2">{errorMessage}</p>}
+        {errors.UserName?.message && <p className="level-item has-text-danger">{errors.UserName.message as string}</p>}
         {errors.Email?.message && <p className="level-item has-text-danger">{errors.Email.message as string}</p>}
         {errors.Password?.message && <p className="level-item has-text-danger">{errors.Password.message as string}</p>}
         <table className="table" style={{backgroundColor: 'rgba(255, 255, 255, 0)'}}>
@@ -32,16 +33,48 @@ const LogInForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (prop
             <tr>
               <td>
                 <Controller
-                  name="Email"
+                  name="UserName"
                   control={control}
                   defaultValue=""
                   render={({ field: {name, value, onChange } }) => 
-                    <Input
+                    <Input 
                       name={name}
                       type="text"
                       value={value}
                       onChangeEvent={onChange}
-                      label="メールアドレス"
+                      label="UserName"
+                      classValueLabel="input-label"
+                      classValueInput="input-style"
+                      maxLength={50}
+                      placeholder='UserName'
+                    />
+                  }
+                  rules={{ 
+                    required: {
+                      value: true,
+                      message: "UserNameを入力してください",
+                    },
+                    minLength: {
+                      value: 8,
+                      message: "UserNameは8文字以上入力してください",
+                    }
+                  }}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Controller
+                  name="Email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field: {name, value, onChange } }) => 
+                    <Input 
+                      name={name}
+                      type="text"
+                      value={value}
+                      onChangeEvent={onChange}
+                      label="Email"
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
@@ -77,7 +110,7 @@ const LogInForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (prop
                       type="text"
                       value={value}
                       onChangeEvent={onChange}
-                      label="パスワード"
+                      label="Password"
                       classValueLabel="input-label"
                       classValueInput="input-style"
                       maxLength={50}
@@ -99,17 +132,16 @@ const LogInForm: FC<{setSession: SetterOrUpdater<typeUser | undefined>}> = (prop
             </tr>
           </tbody>
         </table>
-        
         <Button
           classValueButtonContainer="level-item"
           classValueButton="mt-5 login-button-style"
           type="submit"
         >
-          <p>Login</p>
+          <span>新規登録</span>
         </Button>
       </form>
     </div>
   )
 }
 
-export default LogInForm;
+export default SignUpForm;

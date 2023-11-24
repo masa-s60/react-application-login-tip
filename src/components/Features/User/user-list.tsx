@@ -1,8 +1,8 @@
-import { getAllUsersDocuments } from "../Container/firestore-connection";
+import { getAllUsersDocuments } from "../../Container/firestore-connection";
 import { useEffect, FC } from "react";
 import { useRecoilValue } from "recoil";
-import { authSessionState } from "../../recoil/atom";
-import { useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive, typeUser } from "../../types/type";
+import { authSessionState } from "../../../recoil/atom";
+import { useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive, typeUser } from "../../../types/type";
 
 const UserList: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
 

@@ -1,13 +1,13 @@
 import { FC, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import Input from "../Common/Molecules/input";
-import Button from "../Common/Atoms/button";
-import { fadeOutModal } from "../Container/tip-func";
-import { sendTip } from "../Container/tip-func";
-import { getAllUsersDocuments } from "../Container/firestore-connection";
+import Input from "../../Common/Molecules/input";
+import Button from "../../Common/Atoms/button";
+import { fadeOutModal } from "../../Container/tip-func";
+import { sendTip } from "../../Container/tip-func";
+import { getAllUsersDocuments } from "../../Container/firestore-connection";
 import { useRecoilState } from "recoil";
-import { authSessionState } from "../../recoil/atom";
-import { typeUser, useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive } from "../../types/type";
+import { authSessionState } from "../../../recoil/atom";
+import { typeUser, useStateTypeShow, useStateTypeUserInfo, useStateTypeUsers, typeSetActive } from "../../../types/type";
 
 const SendMoneyForm: FC<{userInfoItem: useStateTypeUserInfo, showModalItem: useStateTypeShow, usersItem: useStateTypeUsers, setActive: typeSetActive}> = (props) => {
 
