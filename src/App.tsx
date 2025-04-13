@@ -12,7 +12,7 @@ function App() {
       <div className='hero is-fullheight background-gradation'>
         <div className='hero-body level-item'>
           <RecoilRoot>
-            <BrowserRouter>
+            <BrowserRouter basename="/masa-s60">
               <Routes>
                 <Route path="/" Component={Login}/>
                 <Route path="/tipApp" Component={TipApplication}/>
